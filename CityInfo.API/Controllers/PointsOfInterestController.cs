@@ -1,6 +1,10 @@
 ﻿using CityInfo.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CityInfo.API.Controllers
 {
@@ -8,7 +12,11 @@ namespace CityInfo.API.Controllers
     [Route("api/cities/{cityId}/pointsofinterest")]
     public class PointsOfInterestController : ControllerBase
     {
-        private object pointOfInterestFromStore;
+        private readonly ILogger<PointsOfInterestController> _logger;
+        public PointsOfInterestController(ILogger<PointsOfInterestController> logger)
+        {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
 
         [HttpGet]
         public IActionResult GetPointsOfInterest(int cityId)
