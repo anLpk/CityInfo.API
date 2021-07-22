@@ -29,6 +29,7 @@ namespace CityInfo.API
 
 
             app.UseRouting();
+            app.UseStatusCodePages();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
